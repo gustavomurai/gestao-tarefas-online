@@ -1,4 +1,4 @@
-# Gestão de Tarefas – Angular + Node.js (Grupo 3)
+# Gestão de Tarefas – Angular + Node.js (Grupo 3) ONLINE
 
 ## Integrantes do Grupo
 - **Gustavo Cerqueira Murai**
@@ -287,5 +287,6 @@ O projeto cumpre todos os requisitos do professor, entrega um CRUD completo, int
 Demonstra domínio em Angular, Node.js e práticas modernas de desenvolvimento web.
 
 ---
+
 
 
