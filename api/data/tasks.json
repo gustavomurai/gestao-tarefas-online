@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "titulo": "Revisar API Node",
+    "descricao": "Verificar endpoints de autenticação, corrigir respostas incorretas e validar tratamento de erros em todos os métodos relacionados a login e refresh token.",
+    "responsavel": "Gustavo",
+    "prioridade": "Alta",
+    "status": "Concluída",
+    "dataLimite": "2025-12-05",
+    "dataCriacao": "2025-11-28"
+  },
+  {
+    "id": 2,
+    "titulo": "Ajustar componente",
+    "descricao": "Corrigir layout e comportamento do componente de lista (task-list): alinhar colunas, corrigir responsividade e tratar overflow de textos longos.",
+    "responsavel": "Igor",
+    "prioridade": "Média",
+    "status": "Em Andamento",
+    "dataLimite": "2025-12-10",
+    "dataCriacao": "2025-11-30"
+  },
+  {
+    "id": 3,
+    "titulo": "Implementar AuthGuard",
+    "descricao": "Proteger rotas /tasks e /profile com guard; redirecionar usuários não autenticados para /login e preservar rota desejada após login.",
+    "responsavel": "Admin",
+    "prioridade": "Alta",
+    "status": "Pendente",
+    "dataLimite": "2025-12-03",
+    "dataCriacao": "2025-11-25"
+  },
+  {
+    "id": 4,
+    "titulo": "Testes manuais do fluxo CRUD",
+    "descricao": "Testar criação, edição, exclusão e import/export de tarefas; documentar bugs encontrados e passos para reproduzir.",
+    "responsavel": "Gustavo",
+    "prioridade": "Baixa",
+    "status": "Pendente",
+    "dataLimite": "2025-12-15",
+    "dataCriacao": "2025-11-29"
+  },
+  {
+    "id": 5,
+    "titulo": "Melhorar validações front-end",
+    "descricao": "Adicionar validação de campos no formulário de tarefas: título obrigatório, dataLimite válida e tamanho máximo para descrição.",
+    "responsavel": "Igor",
+    "prioridade": "Alta",
+    "status": "Concluída",
+    "dataLimite": "2025-12-08",
+    "dataCriacao": "2025-11-27"
+  },
+  {
+    "id": 6,
+    "titulo": "Criar exportação CSV",
+    "descricao": "Implementar exportação da lista de tarefas em CSV com filtros aplicados e encoding compatível (UTF-8).",
+    "responsavel": "Admin",
+    "prioridade": "Média",
+    "status": "Em Andamento",
+    "dataLimite": "2025-12-12",
+    "dataCriacao": "2025-11-26"
+  },
+  {
+    "id": 7,
+    "titulo": "Corrigir overflow em detalhes",
+    "descricao": "Corrigir quebra de linhas na página de detalhes (value/descriptions com strings longas sem espaços); garantir que o card expanda verticalmente.",
+    "responsavel": "Gustavo",
+    "prioridade": "Alta",
+    "status": "Pendente",
+    "dataLimite": "2025-12-07",
+    "dataCriacao": "2025-11-30"
+  },
+  {
+    "id": 8,
+    "titulo": "Documentar deploy",
+    "descricao": "Escrever instruções de deploy (produção) incluindo variáveis de ambiente, build e scripts necessários para a API e frontend.",
+    "responsavel": "Igor",
+    "prioridade": "Baixa",
+    "status": "Pendente",
+    "dataLimite": "2025-12-20",
+    "dataCriacao": "2025-11-24"
+  }
+]

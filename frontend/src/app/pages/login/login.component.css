@@ -1,0 +1,223 @@
+/* layout wrapper  
+   Container principal da página de login — centraliza o card no meio da tela */
+.login-wrapper {
+  min-height: 100vh; /* ocupa a tela inteira */
+  display: flex; /* permite centralização vertical/horizontal */
+  align-items: center;
+  justify-content: center;
+  background: #f5f6f7; /* fundo cinza claro */
+  padding: 28px; /* espaço interno */
+  box-sizing: border-box;
+}
+
+/* Cartão branco onde ficam os inputs, botões e título */
+.login-card {
+  width: 420px; /* largura fixa no desktop */
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #d7ecef; /* borda suave */
+  padding: 28px 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Título do card ("Login" ou "Criar Conta") */
+.card-title {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Estrutura de um bloco de input + label */
+.form-group { margin-bottom: 14px; }
+
+/* Label acima de cada input */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color:#333;
+  font-size:13px;
+}
+
+/* Inputs de texto, senha e email */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cddfe8;
+  background: #f0f7fa;
+  box-sizing: border-box;
+  font-size:14px;
+  color:#222;
+}
+
+/* Efeito ao clicar no input (foco) */
+input:focus {
+  outline: none;
+  border-color:#98c9f0;
+  box-shadow:0 0 0 3px rgba(33,150,243,0.06);
+}
+
+/* Input marcado como inválido */
+input.invalid {
+  border-color:#e08b8b;
+  background:#fff6f6;
+}
+
+/* Linha de botões (Login + Registrar) */
+.actions-row {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-top:6px;
+  justify-content:center;
+}
+
+/* Classe base de botões */
+.btn {
+  padding:10px 16px;
+  border-radius:6px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* Botão "Criar Conta" */
+.btn-register {
+  background:#28a745;
+  color:#fff;
+}
+
+/* Botão "Login" */
+.btn-login {
+  background:#007bff;
+  color:#fff;
+}
+
+/* Botões usados dentro do modal de redefinição de senha */
+.btn-primary {
+  background:#007bff;
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+.btn-secondary {
+  background:#6c757d;
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+/* Desabilita botão com opacidade reduzida */
+button[disabled] {
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+/* Link "Esqueci minha senha" */
+.forgot-bottom {
+  color:#007bff;
+  cursor:pointer;
+  text-decoration:underline;
+  font-size:13px;
+}
+
+/* Mensagem de erro exibida abaixo do formulário */
+.error-message {
+  color:#d9534f;
+  margin-top:12px;
+  font-weight:600;
+  text-align:center;
+}
+
+/* ---------------- MODAL DE REDEFINIÇÃO DE SENHA ---------------- */
+
+/* Fundo escuro semi-transparente atrás do modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0; /* ocupa toda a tela */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0,0,0,0.35);
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Cartão do modal (onde insere email para redefinir senha) */
+.modal-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  width: 420px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  border: 1px solid #e6eef0;
+}
+
+/* Título do modal */
+.modal-card h3 {
+  margin-top: 0;
+  margin-bottom:10px;
+  text-align:left;
+}
+
+/* Input dentro do modal */
+.modal-input {
+  width: 100%;
+  padding:10px;
+  margin-top:8px;
+  margin-bottom:14px;
+  border-radius:6px;
+  border:1px solid #cddfe8;
+  background:#fff;
+  box-sizing:border-box;
+}
+
+/* Área dos botões no modal */
+.modal-actions {
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+}
+
+/* Mensagem "E-mail enviado" */
+.reset-sent {
+  text-align:left;
+  padding:8px 0;
+}
+
+/* Texto somente para leitor de tela (acessibilidade) */
+.sr-only {
+  position:absolute;
+  left:-9999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* ---------- RESPONSIVIDADE PARA TELAS PEQUENAS ---------- */
+@media (max-width:460px) {
+  .login-card,
+  .modal-card {
+    width: 100%;
+    padding:18px;
+    border-radius:8px;
+  }
+
+  .card-title {
+    font-size:18px;
+  }
+}

@@ -1,0 +1,168 @@
+/* wrapper */
+/* Área externa que centraliza o formulário na tela inteira */
+.register-wrapper {
+  min-height: 100vh; /* ocupa toda a altura da tela */
+  display:flex; /* permite centralização usando flexbox */
+  align-items:center; /* centraliza verticalmente */
+  justify-content:center; /* centraliza horizontalmente */
+  background:#f5f6f7; /* cor de fundo */
+  padding:28px; /* espaçamento interno para quando estiver em telas menores */
+  box-sizing:border-box; /* inclui padding no cálculo total */
+}
+
+/* card */
+/* Caixa principal onde ficam todos os campos do formulário */
+.register-card {
+  width:720px; /* largura padrão */
+  max-width:100%; /* impede que ultrapasse a tela no mobile */
+  background:#fff; /* fundo branco */
+  border-radius:10px; /* cantos arredondados */
+  border:1px solid #d7ecef; /* borda suave azulada */
+  padding:22px 26px; /* espaçamento interno */
+  box-sizing:border-box;
+}
+
+/* título */
+/* Estilização do título do formulário */
+.card-title {
+  margin:0 0 14px 0; /* espaçamento inferior */
+  font-size:20px; /* tamanho do texto */
+  font-weight:700; /* negrito */
+  color:#222; /* cor escura */
+}
+
+/* fieldset */
+/* Agrupamento visual das seções do formulário */
+.section {
+  margin-bottom:14px; /* separação entre seções */
+  border:1px solid #eee; /* borda suave */
+  padding:12px; /* espaçamento interno */
+  border-radius:6px; /* cantos arredondados */
+}
+
+/* Título das seções */
+.section legend {
+  padding:0 6px; /* pequena margem lateral */
+  font-weight:700;
+  color:#444;
+}
+
+/* labels/inputs */
+/* Agrupamento de cada campo */
+.form-group { margin-bottom:12px; }
+
+/* Rótulo dos campos */
+label {
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
+  color:#333;
+  font-size:13px;
+}
+
+/* Estilo geral dos inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"] {
+  width:100%; /* ocupa toda a linha */
+  padding:10px 12px; /* área clicável confortável */
+  border-radius:6px; /* cantos arredondados */
+  border:1px solid #cddfe8; /* borda azul clara */
+  background:#f7fbfc; /* leve azul */
+  font-size:14px;
+  color:#222;
+  box-sizing:border-box;
+}
+
+/* Estilo ao focar no campo (acessibilidade e UX) */
+input:focus {
+  outline:none;
+  border-color:#98c9f0; /* azul mais forte */
+  box-shadow:0 0 0 3px rgba(33,150,243,0.06); /* halo suave */
+}
+
+/* Texto auxiliar para senha */
+.password-hint {
+  display:block;
+  font-size:12px;
+  color:#666;
+  margin-top:6px;
+}
+
+/* row/cols (dataNasc + telefone) */
+/* Estrutura de duas colunas lado a lado */
+.row {
+  display:flex;
+  gap:12px; /* espaço entre as colunas */
+}
+
+/* Cada coluna ocupa o mesmo espaço */
+.col {
+  flex:1;
+}
+
+/* ações */
+/* Área dos botões de envio e voltar */
+.form-actions {
+  display:flex;
+  gap:12px;
+  justify-content:flex-start; /* botões alinhados à esquerda */
+  margin-top:10px;
+}
+
+/* Estilo base dos botões */
+.btn {
+  padding:10px 16px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  color:#fff;
+}
+
+/* Botão de registrar */
+.btn-submit {
+  background:#28a745; /* verde */
+}
+
+/* Botão de voltar */
+.btn-back {
+  background:#6c757d; /* cinza */
+}
+
+/* mensagens */
+/* Erro exibido após falha no cadastro */
+.error-message {
+  color:#d9534f; /* vermelho */
+  background:#fff1f0; /* fundo rosado */
+  border:1px solid #f0c6c6;
+  padding:10px;
+  border-radius:6px;
+  margin-top:12px;
+}
+
+/* Mensagem de sucesso após cadastro */
+.success-message {
+  color:#2e7d32; /* verde */
+  background:#f0fff4;
+  border:1px solid #cdeacf;
+  padding:10px;
+  border-radius:6px;
+  margin-top:12px;
+}
+
+/* responsivo */
+/* Ajustes para telas menores */
+@media (max-width: 760px) {
+  .register-card {
+    width:100%;
+    padding:18px;
+    border-radius:8px;
+  }
+
+  .row {
+    flex-direction:column; /* empilha os inputs verticalmente */
+  }
+}

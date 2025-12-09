@@ -1,0 +1,147 @@
+<!-- tarefa-detalhe.component.html -->
+
+<!-- Container principal: só aparece quando "tarefa" já foi carregada.
+     Caso contrário, mostra o template de loading lá embaixo -->
+<div class="detalhe-wrap" *ngIf="tarefa; else loading">
+  <div class="detalhe-card">
+
+    <!-- Cabeçalho do card com título e subtítulo -->
+    <header class="detalhe-header">
+      <h1>Detalhes da Tarefa</h1>
+      <p class="detalhe-sub">Visualização completa da tarefa selecionada</p>
+    </header>
+
+    <!-- Corpo principal contendo o grid das informações -->
+    <main class="detalhe-body">
+
+      <!-- Grade composta por linhas: cada linha tem label + value -->
+      <div class="detalhe-grid">
+
+        <!-- Linha exibindo o ID -->
+        <div class="det-row">
+          <div class="label">ID</div>
+          <div class="value">{{ tarefa.id }}</div>
+        </div>
+
+        <!-- Linha exibindo o título da tarefa -->
+        <div class="det-row">
+          <div class="label">Título</div>
+
+          <!-- value-title estiliza como título destacado -->
+          <div class="value value-title">
+            <!-- RouterLink abre a própria página da tarefa -->
+            <a [routerLink]="['/tasks', tarefa.id]" class="title-link">
+              {{ tarefa.titulo || '—' }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Linha da descrição (pode ser longa) -->
+        <div class="det-row">
+          <div class="label">Descrição</div>
+
+          <!-- value-description aplica regras especiais de quebra de linha -->
+          <div class="value value-description">
+            <!-- Span mantém fluxo inline; quebra é controlada no CSS -->
+            <span>{{ tarefa.descricao || 'Sem descrição' }}</span>
+          </div>
+        </div>
+
+        <!-- Linha do status (Pendente, Em Andamento, Concluída) -->
+        <div class="det-row">
+          <div class="label">Status</div>
+          <div class="value">
+
+            <!-- Badge muda de cor conforme o status -->
+            <span class="badge status"
+                  [ngClass]="{
+                    'badge-pendente': tarefa.status === 'Pendente',
+                    'badge-andamento': tarefa.status === 'Em Andamento',
+                    'badge-concluida': tarefa.status === 'Concluída'
+                  }">
+              {{ tarefa.status || '—' }}
+            </span>
+
+          </div>
+        </div>
+
+        <!-- Linha da prioridade -->
+        <div class="det-row">
+          <div class="label">Prioridade</div>
+          <div class="value">
+
+            <!-- Badge muda conforme o nível de prioridade -->
+            <span class="badge prioridade"
+                  [ngClass]="{
+                    'pri-alta': tarefa.prioridade === 'Alta',
+                    'pri-media': tarefa.prioridade === 'Média',
+                    'pri-baixa': tarefa.prioridade === 'Baixa'
+                  }">
+              {{ tarefa.prioridade || '—' }}
+            </span>
+
+          </div>
+        </div>
+
+        <!-- Linha responsável -->
+        <div class="det-row">
+          <div class="label">Responsável</div>
+          <div class="value">{{ tarefa.responsavel || '—' }}</div>
+        </div>
+
+        <!-- Linha da data limite -->
+        <div class="det-row">
+          <div class="label">Data Limite</div>
+
+          <!-- formatDate() vem do componente TS -->
+          <div class="value">{{ formatDate(tarefa.dataLimite) || '—' }}</div>
+        </div>
+
+        <!-- Linha da data de criação -->
+        <div class="det-row">
+          <div class="label">Data de Criação</div>
+          <div class="value">{{ formatDate(tarefa.dataCriacao) || '—' }}</div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Rodapé com os botões de ação -->
+    <footer class="detalhe-footer">
+      <div class="actions">
+
+        <!-- Botão de editar tarefa -->
+        <button class="btn btn-primary" (click)="editTarefa()">
+          <span class="material-icons" aria-hidden="true"
+                style="font-size:16px;vertical-align:middle">edit</span>
+          &nbsp; Editar
+        </button>
+
+        <!-- Botão para voltar à lista -->
+        <button class="btn btn-neutral" (click)="backToList()">
+          <span class="material-icons" aria-hidden="true"
+                style="font-size:16px;vertical-align:middle">arrow_back</span>
+          &nbsp; Voltar à Lista
+        </button>
+
+        <!-- Botão de excluir (só aparece se taskService existir) -->
+        <button class="btn btn-danger" (click)="confirmDelete()" *ngIf="taskService">
+          <span class="material-icons" aria-hidden="true"
+                style="font-size:16px;vertical-align:middle">delete</span>
+          &nbsp; Excluir
+        </button>
+
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<!-- Template exibido enquanto a tarefa está sendo carregada -->
+<ng-template #loading>
+  <div class="detalhe-wrap loading">
+    <div class="detalhe-card">
+      <p>Carregando detalhes...</p>
+    </div>
+  </div>
+</ng-template>

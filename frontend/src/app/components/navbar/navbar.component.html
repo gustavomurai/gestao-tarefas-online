@@ -1,0 +1,32 @@
+<!-- Exibe a navbar somente quando o usuário está logado.
+     O método isLoggedIn() vem do componente TS e controla essa visibilidade. -->
+<header *ngIf="isLoggedIn()" class="header-container">
+
+  <!-- Caixa da esquerda: exibe a mensagem de boas-vindas com o nome do usuário -->
+  <div class="left-box">
+    <!-- welcomeMessage é preenchida no componente TS com o nome do usuário -->
+    <span class="welcome-message">{{ welcomeMessage }}</span>
+  </div>
+
+  <!-- Título central da aplicação (ocupa o espaço flex entre esquerda e direita) -->
+  <h1 class="title">Sistema de Gestão de Tarefas (CRUD)</h1>
+
+  <!-- Caixa da direita: contém os botões de Logout e de Perfil -->
+  <div class="right-box">
+
+    <!-- Botão para fazer logout.
+         Chama o método onLogout() do componente TS. -->
+    <button (click)="onLogout()" class="logout-button">
+      Logout
+    </button>
+
+    <!-- Botão para ir para a página de edição do perfil do usuário.
+         Chama o método goToProfile() no componente TS.
+         O atributo title exibe uma dica ao passar o mouse. -->
+    <button (click)="goToProfile()" class="profile-button" title="Editar meu perfil">
+      Meu Perfil
+    </button>
+
+  </div>
+
+</header>

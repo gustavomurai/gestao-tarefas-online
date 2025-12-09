@@ -1,0 +1,126 @@
+<!-- Wrapper principal: centraliza o card de registro no centro da tela -->
+<div class="register-wrapper">
+
+  <!-- Card onde fica todo o formulário -->
+  <div class="register-card">
+
+    <!-- Título do formulário -->
+    <h2 class="card-title">Criar Nova Conta</h2>
+
+    <!-- Formulário principal.
+         ngSubmit chama o método onSubmit()
+         novalidate desativa validações nativas do HTML5 -->
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" novalidate>
+
+      <!-- PRIMEIRA SEÇÃO: Dados pessoais -->
+      <fieldset class="section">
+        <legend>Informações Pessoais</legend>
+
+        <!-- Campo: Nome completo -->
+        <div class="form-group">
+          <label for="nomeCompleto">Nome Completo</label>
+          <!-- required ativará validação pelo Angular -->
+          <input id="nomeCompleto" name="nomeCompleto" type="text" required
+                 [(ngModel)]="nomeCompleto" #nome="ngModel"/>
+        </div>
+
+        <!-- Campo: E-mail -->
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <!-- type="email" ativa validação de e-mail no Angular -->
+          <input id="email" name="email" type="email" required
+                 [(ngModel)]="email" #emailModel="ngModel"/>
+        </div>
+
+        <!-- Campo: CPF com máscara aplicada pelo método onCpfChange() -->
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <!-- maxlength evita ultrapassar o formato 000.000.000-00 -->
+          <input id="cpf" name="cpf" type="text" maxlength="14"
+                 [(ngModel)]="cpf" (ngModelChange)="onCpfChange()"/>
+        </div>
+
+        <!-- Linha com duas colunas: Data de nascimento e telefone -->
+        <div class="row">
+          
+          <!-- Coluna esquerda -->
+          <div class="col">
+            <div class="form-group">
+              <label for="dataNascimento">Data de Nascimento</label>
+              <input id="dataNascimento" name="dataNascimento" type="date"
+                     [(ngModel)]="dataNascimento"/>
+            </div>
+          </div>
+
+          <!-- Coluna direita -->
+          <div class="col">
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <!-- maxlength limita o formato (xx) xxxxx-xxxx -->
+              <input id="telefone" name="telefone" type="tel" maxlength="15"
+                     [(ngModel)]="telefone" (ngModelChange)="onTelefoneChange()"/>
+            </div>
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- SEGUNDA SEÇÃO: Dados de acesso -->
+      <fieldset class="section">
+        <legend>Dados de Acesso e Verificação</legend>
+
+        <!-- Campo: nome de usuário -->
+        <div class="form-group">
+          <label for="username">Usuário (Login)</label>
+          <input id="username" name="username" type="text" required
+                 [(ngModel)]="username" #u="ngModel"/>
+        </div>
+
+        <!-- Campo: Senha -->
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <!-- minlength exige 8 caracteres no mínimo -->
+          <input id="password" name="password" type="password" required minlength="8"
+                 [(ngModel)]="password" #p="ngModel"/>
+          <!-- Texto auxiliar sobre regras da senha -->
+          <small class="password-hint">{{ passwordHint }}</small>
+        </div>
+
+        <!-- Campo: confirmação da senha -->
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar Senha</label>
+          <input id="confirmPassword" name="confirmPassword" type="password" required
+                 [(ngModel)]="confirmPassword" #c="ngModel"/>
+        </div>
+
+        <!-- Campo: código de verificação -->
+        <div class="form-group">
+          <label for="codigoVerificacao">Código de Verificação (9999)</label>
+          <input id="codigoVerificacao" name="codigoVerificacao" type="text"
+                 [(ngModel)]="codigoVerificacao"/>
+        </div>
+      </fieldset>
+
+      <!-- Área dos botões -->
+      <div class="form-actions">
+
+        <!-- Botão de envio.
+             O texto muda conforme o estado do envio -->
+        <button type="submit" class="btn btn-submit">
+          <span *ngIf="!submitting">Concluir Cadastro</span>
+          <span *ngIf="submitting">Enviando...</span>
+        </button>
+
+        <!-- Botão para voltar ao login -->
+        <button type="button" class="btn btn-back" routerLink="/login">Voltar ao Login</button>
+      </div>
+
+      <!-- Exibe mensagem de erro -->
+      <p *ngIf="registerError" class="error-message">{{ errorMessage }}</p>
+
+      <!-- Exibe mensagem de sucesso se não houver erro -->
+      <p *ngIf="!registerError && successMessage" class="success-message">{{ successMessage }}</p>
+
+    </form>
+  </div>
+</div>

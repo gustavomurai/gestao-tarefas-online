@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "123"
+  },
+  {
+    "id": 2,
+    "username": "igormurai",
+    "password": "Gustavo10062002@.@",
+    "nomeCompleto": "Igor Murai",
+    "email": "igormurai@gmail.com",
+    "telefone": "(13) 98801-3059"
+  },
+  {
+    "id": 3,
+    "username": "muraigustavo",
+    "password": "Gu10062002@.",
+    "nomeCompleto": "Gustavo Cerqueira Murai",
+    "email": "muraigustavo@gmail.com",
+    "telefone": "(13) 99183-7048"
+  }
+]

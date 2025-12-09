@@ -1,0 +1,133 @@
+<!-- Container que centraliza visualmente o card de login na tela -->
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <!-- Título principal do formulário -->
+    <h2 class="card-title">Sistema de Gestão de Tarefas</h2>
+
+    <!-- Formulário de login -->
+    <!-- (ngSubmit)="onSubmit()" → chama o método no TS quando clicar em "Entrar" -->
+    <!-- #loginForm="ngForm" → referência ao formulário para validação -->
+    <!-- novalidate → impede validação padrão do navegador, permitindo validação Angular -->
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+
+      <!-- Campo de usuário -->
+      <div class="form-group">
+        <label for="username">Usuário:</label>
+
+        <!--
+          [(ngModel)]="username" → faz o binding bidirecional com a variável do component.
+          required → campo obrigatório.
+          #u="ngModel" → referência do controle para validação.
+          [class.invalid]="u.invalid && (u.dirty || u.touched)" → destaca erro somente após interação.
+        -->
+        <input
+          id="username"
+          name="username"
+          type="text"
+          required
+          [(ngModel)]="username"
+          #u="ngModel"
+          [class.invalid]="u.invalid && (u.dirty || u.touched)"
+          autocomplete="username"
+        />
+      </div>
+
+      <!-- Campo de senha -->
+      <div class="form-group">
+        <label for="password">Senha:</label>
+
+        <!-- Mesmo padrão de validação do campo acima -->
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          [(ngModel)]="password"
+          #p="ngModel"
+          [class.invalid]="p.invalid && (p.dirty || p.touched)"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <!-- Linha de botões (Cadastrar e Entrar) -->
+      <div class="actions-row" style="justify-content:center;">
+
+        <!-- Botão que leva para a página de cadastro -->
+        <!-- routerLink="/register" → navegação Angular -->
+        <button
+          type="button"
+          class="btn btn-register"
+          routerLink="/register"
+        >
+          Cadastrar
+        </button>
+
+        <!-- Botão de login -->
+        <!-- [disabled]="loginForm.invalid" → só ativa se o formulário estiver válido -->
+        <button
+          type="submit"
+          class="btn btn-login"
+          [disabled]="loginForm.invalid"
+        >
+          Entrar
+        </button>
+      </div>
+
+      <!-- Link de esqueci minha senha, abre modal -->
+      <div style="text-align:center; margin-top:12px;">
+        <a class="forgot-bottom" (click)="openResetModal()">Esqueceu a senha?</a>
+      </div>
+
+      <!-- Exibe mensagem de erro caso login falhe -->
+      <p *ngIf="loginError" class="error-message">
+        Falha no login. Verifique suas credenciais.
+      </p>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- ======================= MODAL DE RECUPERAÇÃO DE SENHA ======================= -->
+<!-- Exibido somente quando showResetModal = true -->
+<div *ngIf="showResetModal" class="modal-overlay" role="dialog" aria-modal="true">
+
+  <!-- Cartão do modal -->
+  <div class="modal-card" role="document">
+    <h3>Recuperar senha</h3>
+
+    <!-- Tela inicial do modal, antes de enviar o e-mail -->
+    <div *ngIf="!resetSent">
+      <p>Digite o e-mail cadastrado para receber instruções (simulado):</p>
+
+      <!-- Input para e-mail -->
+      <label for="resetEmail" class="sr-only">E-mail</label>
+      <input id="resetEmail"
+             type="email"
+             placeholder="seu@email.com"
+             [(ngModel)]="resetEmail"
+             name="resetEmail"
+             class="modal-input"/>
+
+      <!-- Botões do modal: cancelar e enviar -->
+      <div class="modal-actions">
+        <button class="btn btn-secondary" (click)="closeResetModal()">Cancelar</button>
+
+        <!-- Só habilita o botão se o usuário digitou algum e-mail -->
+        <button class="btn btn-primary" [disabled]="!resetEmail" (click)="sendResetEmail()">Enviar</button>
+      </div>
+    </div>
+
+    <!-- Tela mostrada após "enviar" -->
+    <div *ngIf="resetSent" class="reset-sent">
+      <p><strong>Pronto!</strong> Enviamos um e-mail com instruções (simulado).</p>
+
+      <!-- Botão de fechar modal -->
+      <div class="modal-actions">
+        <button class="btn btn-primary" (click)="closeResetModal()">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

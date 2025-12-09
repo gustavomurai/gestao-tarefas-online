@@ -1,0 +1,144 @@
+/* card container (estilo alinhado com detalhe)
+   Este bloco define o container principal do formulário de criação/edição de tarefas.
+   Ele centraliza o card, define espaçamento, bordas e aparência visual consistente. */
+.form-card {
+  max-width: 900px;           /* largura máxima do card */
+  margin: 28px auto;          /* centraliza horizontalmente */
+  padding: 22px;              /* espaçamento interno */
+  background: #fff;           /* fundo branco */
+  border-radius: 10px;        /* bordas arredondadas */
+  border: 2px solid #8bcde773; /* borda verde clara */
+  box-sizing: border-box;     /* inclui padding/borda no cálculo total */
+}
+
+/* header do formulário
+   Define o espaçamento e estilos do título e subtítulo do form. */
+.form-card-header {
+  margin-bottom: 12px;
+}
+.form-card-header h2 {
+  margin: 0;
+  font-size: 22px;            /* tamanho do título */
+  color: #222;
+}
+.form-card-header .subtitle {
+  margin: 6px 0 0;            /* margem superior pequena */
+  color: #666;                /* cor discreta para subtítulo */
+  font-size: 13px;
+}
+
+/* layout geral do formulário */
+.form-body {
+  width: 100%;
+}
+
+/* cada campo individual (label + input/select) */
+.form-group {
+  margin-bottom: 14px;        /* separação entre os grupos */
+}
+.form-group label {
+  display: block;             /* label ocupa a largura toda */
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;                /* cor mais forte para identificar labels */
+}
+
+/* estilo geral dos inputs */
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #d6d6d6;  /* cor de borda neutra */
+  border-radius: 6px;
+  background: #fff;
+  box-sizing: border-box;
+  transition: border-color .15s, box-shadow .15s; /* animação leve ao focar */
+}
+
+/* efeito de foco nos inputs */
+.form-control:focus {
+  outline: none;              /* remove borda azul padrão do browser */
+  border-color: #cf987e;      /* cor da borda ao focar */
+  box-shadow: 0 0 0 4px rgba(126,207,184,0.12); /* leve glow ao focar */
+}
+
+/* linha com duas colunas (ex: datas, prioridade, responsável)
+   Usada para organizar o form de forma mais profissional. */
+.form-row {
+  display: flex;
+  gap: 16px;                  /* espaçamento entre colunas */
+  margin-bottom: 14px;
+}
+
+/* cada coluna dentro da linha */
+.form-col {
+  flex: 1 1 0;                /* colunas dividem espaço igualmente */
+  min-width: 0;               /* permite responsividade correta */
+}
+
+/* área das ações (botões do rodapé do form) */
+.form-actions {
+  display: flex;
+  justify-content: space-between; /* botões distribuídos nos extremos */
+  align-items: center;
+  margin-top: 18px;
+}
+
+/* grupos separando botões da esquerda e direita */
+.left-actions {
+  display: flex;
+  gap: 10px;                  /* espaço entre botões */
+  align-items: center;
+}
+.right-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* estilo base dos botões */
+.btn {
+  display: inline-flex;       /* centraliza conteúdo vertical e horizontal */
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;            /* cursor de "mãozinha" para ação */
+}
+
+/* variantes de cor para botões (seguem padrão do projeto) */
+.btn-primary {
+  background: #28a745;        /* verde */
+  color: #fff;
+}
+.btn-secondary {
+  background: #6c757d;        /* cinza */
+  color: #fff;
+}
+.btn-danger {
+  background: #dc3545;        /* vermelho */
+  color: #fff;
+}
+
+/* responsividade para telas pequenas */
+@media (max-width: 720px) {
+  /* colunas passam a ser empilhadas */
+  .form-row {
+    flex-direction: column;
+  }
+
+  /* ações ficam uma embaixo da outra */
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  /* ações da direita continuam alinhadas */
+  .right-actions {
+    justify-content: flex-end;
+  }
+}

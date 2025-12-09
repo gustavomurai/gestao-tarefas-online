@@ -1,0 +1,386 @@
+/* ============================
+   task-list.component.css
+   FINAL AJUSTADO - correção padding da célula Ações
+   Comentários adicionados sem alterar nenhuma linha funcional
+   ============================ */
+
+/* Fonte Global */
+/* Define família de fonte e suavização, aplicado em toda a página */
+* {
+  font-family: 'Inter', Arial, sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout geral do container da página */
+.container { 
+  max-width: 1300px; 
+  margin: 20px auto; 
+  padding: 10px 20px; 
+}
+
+/* ============================
+   HEADER DA LISTA DE TAREFAS
+   ============================ */
+
+/* Cabeçalho com título e botões alinhados */
+.header-container { 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  gap:18px; 
+  padding-bottom:12px; 
+  margin-bottom:20px; 
+}
+
+/* Bloco da esquerda do header */
+.header-left { 
+  display:flex; 
+  align-items:center; 
+  flex:1 1 auto; 
+}
+
+/* Título grande da página e subtítulo */
+.title-block h1 { 
+  margin:0 0 4px; 
+  font-size:28px; 
+  font-weight:700; 
+  color:#222; 
+  line-height:1.05; 
+}
+.title-block .subtitle { 
+  margin:0; 
+  color:#777; 
+  font-size:15px; 
+}
+
+/* Bloco da direita do header com botões Logout e Perfil */
+.header-right { 
+  display:flex; 
+  flex-direction:column; 
+  align-items:flex-end; 
+  gap:8px; 
+  flex:0 0 auto; 
+}
+
+/* ============================
+   Botões do header
+   ============================ */
+
+.logout-button{
+  background:#007bff;
+  color:#fff;
+  padding:10px 16px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.profile-button{
+  background:#fff;
+  color:#007bff;
+  border:1px solid #007bff;
+  padding:8px 12px;
+  border-radius:6px;
+  min-width:110px;
+}
+
+/* Botão grande de criar tarefa */
+.create-button-big{
+  background:#28a745;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:6px;
+  border:none;
+  font-weight:600;
+  margin-bottom:18px;
+}
+
+/* ============================
+   FILTROS
+   ============================ */
+
+.filter-container{
+  border:1px solid #d9d9d9; 
+  padding:18px; 
+  border-radius:10px; 
+  background:#fff; 
+  margin-bottom:14px; 
+}
+
+.filter-controls{
+  display:flex; 
+  gap:10px; 
+  flex-wrap:wrap; 
+}
+
+/* Inputs/selects dos filtros */
+.filter-controls input, 
+.filter-controls select { 
+  padding:10px; 
+  border-radius:6px; 
+  border:1px solid #ccc; 
+  font-size:14px; 
+  flex-grow:1; 
+  min-width:150px; 
+}
+
+.reset-button{
+  background:#6c757d; 
+  color:#fff; 
+  padding:10px 16px; 
+  border-radius:6px; 
+  border:none; 
+  font-weight:600; 
+}
+
+/* ============================
+   IMPORT / EXPORT
+   ============================ */
+
+.import-export-container{ 
+  width:100%; 
+  margin-bottom:15px; 
+}
+
+/* Botões alinhados à direita */
+.import-export-right{ 
+  display:flex; 
+  justify-content:flex-end; 
+  gap:12px; 
+}
+
+/* Botão amarelo de exportar/importar */
+.yellow-button{ 
+  background:#f4c542; 
+  color:#4a3c10; 
+  border:1px solid #d1a935; 
+  padding:10px 18px; 
+  border-radius:6px; 
+  font-weight:600; 
+}
+
+/* ============================
+   TABELA DE TAREFAS
+   ============================ */
+
+table {
+  width:100%;
+  border-collapse: separate;
+  border-spacing: 0 6px; /* espaçamento entre linhas */
+  table-layout: fixed;   /* impor largura fixa para colunas */
+}
+
+/* Cabeçalho da tabela */
+th {
+  background:#f1f1f1;
+  padding:14px 10px;
+  border:1px solid #ddd;
+  font-weight:700;
+  text-align:left;
+  vertical-align:middle;
+  font-size:14px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* Células da tabela */
+td {
+  background:#fff;
+  padding:14px 10px;
+  border:1px solid #eee;
+  vertical-align:middle;
+  font-size:14px;
+  position:relative;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* Coluna ID */
+th:first-child, td:first-child {
+  width:64px;
+  text-align:center;
+  font-weight:700;
+}
+
+/* Larguras específicas por coluna */
+th:nth-child(2), td:nth-child(2) { width:320px; }
+th:nth-child(3), td:nth-child(3) { width:120px; }
+th:nth-child(4), td:nth-child(4) { width:90px; }
+th:nth-child(5), td:nth-child(5) { width:110px; }
+th:nth-child(6), td:nth-child(6) { width:140px; }
+
+/* ===============================================
+   COLUNA AÇÕES — TÍTULO ALINHADO À ESQUERDA
+   =============================================== */
+
+/* Força alinhamento do cabeçalho de Ações para a esquerda */
+th.action-column,
+table thead th:last-child {
+  text-align: left !important;
+  padding-left: 10px !important;
+  white-space: nowrap;
+}
+
+/* Largura mínima e máxima da coluna de ações */
+th:nth-child(7), td:nth-child(7) {
+  min-width:220px;
+  max-width:320px;
+}
+
+/* ============================
+   Link azul do título da tarefa
+   ============================ */
+.task-title { 
+  color:#007bff; 
+  font-weight:600; 
+  text-decoration:none; 
+  display:inline-block; 
+  max-width:100%; 
+  overflow:hidden; 
+  text-overflow:ellipsis; 
+  white-space:nowrap; 
+}
+.task-title:hover { text-decoration:underline; }
+
+/* ============================
+   STATUS COLORIDO
+   ============================ */
+.status-pending{ color:#e69500; font-weight:700; }
+.status-progress{ color:#0d6efd; font-weight:700; }
+.status-completed{ color:#17a43b; font-weight:700; }
+
+/* ============================
+   AÇÕES — PRINCIPAL CORREÇÃO: padding restaurado
+   ============================ */
+
+/*
+  Esta classe é aplicada ao <td> que contém os botões.
+  Ela restaura o padding padrão das células, corrigindo o problema
+  da caixa fina que você relatou.
+*/
+.action-buttons-cell {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-end; /* mantém botões alinhados à direita */
+  padding:14px 10px;        /* padding idêntico às demais células */
+  margin:0;
+  white-space:nowrap;
+  box-sizing:border-box;
+}
+
+/* Estilo dos botões de Detalhes, Editar, Excluir */
+table td.action-buttons-cell > .action-detail,
+table td.action-buttons-cell > .action-edit,
+table td.action-buttons-cell > .action-delete {
+  padding:8px 12px;
+  min-width:72px;
+  height:34px;
+  border-radius:6px;
+  font-size:14px;
+  border:none;
+  cursor:pointer;
+  color:#ffffff;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  white-space:nowrap;
+  overflow:visible;
+  box-shadow:none;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: initial;
+}
+
+/* Cores sólidas dos botões */
+table td.action-buttons-cell > .action-detail { background-color: #17a2b8; }
+table td.action-buttons-cell > .action-edit   { background-color: #007bff; }
+table td.action-buttons-cell > .action-delete { background-color: #dc3545; }
+
+/* Hover dos botões */
+table td.action-buttons-cell > .action-detail:hover,
+table td.action-buttons-cell > .action-edit:hover,
+table td.action-buttons-cell > .action-delete:hover {
+  filter: brightness(0.95);
+}
+
+/* Override final caso algum CSS global tente forçar gradiente */
+/* Descomentar se necessário */
+/*
+table td.action-buttons-cell > .action-detail { background-color:#17a2b8 !important; }
+table td.action-buttons-cell > .action-edit   { background-color:#007bff !important; }
+table td.action-buttons-cell > .action-delete { background-color:#dc3545 !important; }
+*/
+
+/* ============================
+   PAGINAÇÃO
+   ============================ */
+.pagination-controls { 
+  display:flex; 
+  justify-content:center; 
+  gap:8px; 
+  margin-top:20px; 
+}
+
+.pagination-button { 
+  background:#f1f1f1; 
+  padding:8px 14px; 
+  border-radius:6px; 
+  cursor:pointer; 
+  border:1px solid #ccc; 
+}
+
+.pagination-button.active { 
+  background:#007bff; 
+  color:#fff; 
+  border-color:#007bff; 
+}
+
+/* ============================
+   RESPONSIVIDADE
+   ============================ */
+
+@media (max-width: 920px) {
+  .header-container { flex-direction:column; align-items:stretch; gap:12px; }
+  .header-right { flex-direction:row; justify-content:flex-end; align-items:center; }
+  .profile-button { min-width:unset; padding:8px 10px; }
+  .filter-controls { gap:8px; }
+  th:nth-child(2), td:nth-child(2) { width:200px; }
+  th:nth-child(7), td:nth-child(7) { min-width:180px; max-width:220px; }
+}
+
+@media (max-width: 560px) {
+  .filter-controls input, .filter-controls select { min-width:110px; }
+  .create-button-big, .logout-button { padding:10px 12px; font-size:14px; }
+  .task-title { font-size:14px; }
+
+  /* Botões menores em telas pequenas */
+  table td.action-buttons-cell > .action-detail,
+  table td.action-buttons-cell > .action-edit,
+  table td.action-buttons-cell > .action-delete {
+    min-width:56px; 
+    padding:6px 8px; 
+    font-size:13px;
+  }
+
+  /* Permite rolagem horizontal da tabela */
+  tbody { 
+    display:block; 
+    width:100%; 
+    overflow-x:auto; 
+  }
+
+  table thead, 
+  table tbody tr { 
+    display:table; 
+    width:100%; 
+    table-layout:fixed; 
+  }
+}

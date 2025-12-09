@@ -1,0 +1,180 @@
+<!--
+  Container principal do formulário de criação/edição de tarefas.
+  Este card segue o mesmo padrão visual usado nas telas de detalhe.
+-->
+<div class="form-card">
+
+  <!--
+    Cabeçalho do formulário.
+    O título e subtítulo mudam automaticamente dependendo se o usuário
+    está criando uma nova tarefa ou editando uma já existente.
+    Isso é controlado pela variável booleana "isEditMode".
+  -->
+  <div class="form-card-header">
+    <!-- Título dinâmico: "Editar Tarefa" ou "Nova Tarefa" -->
+    <h2>{{ isEditMode ? 'Editar Tarefa' : 'Nova Tarefa' }}</h2>
+
+    <!-- Subtítulo contextual -->
+    <p class="subtitle">
+      {{ isEditMode ? 'Faça as alterações e salve.' : 'Preencha os campos para criar uma nova tarefa.' }}
+    </p>
+  </div>
+
+  <!--
+    Formulário principal.
+    O evento (ngSubmit) chama a função onSubmit(), que trata tanto criação quanto edição.
+    O atributo novalidate remove validações nativas do navegador para manter controle total via Angular.
+  -->
+  <form (ngSubmit)="onSubmit()" class="form-body" novalidate>
+
+    <!-- Campo: Título da tarefa -->
+    <div class="form-group">
+      <label for="titulo">Título</label>
+
+      <!--
+        ngModel faz binding bidirecional com tarefa.titulo.
+        required indica que o campo é obrigatório.
+      -->
+      <input
+        id="titulo"
+        [(ngModel)]="tarefa.titulo"
+        name="titulo"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <!-- Campo: Descrição da tarefa -->
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+
+      <textarea
+        id="descricao"
+        [(ngModel)]="tarefa.descricao"
+        name="descricao"
+        required
+        rows="5"
+        class="form-control">
+      </textarea>
+    </div>
+
+    <!-- Linha com dois campos lado a lado: Responsável + Data Limite -->
+    <div class="form-row">
+
+      <!-- Responsável pela tarefa -->
+      <div class="form-col">
+        <label for="responsavel">Responsável</label>
+
+        <input
+          id="responsavel"
+          [(ngModel)]="tarefa.responsavel"
+          name="responsavel"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <!-- Data limite da tarefa -->
+      <div class="form-col">
+        <label for="dataLimite">Data Limite</label>
+
+        <input
+          id="dataLimite"
+          type="date"
+          [(ngModel)]="tarefa.dataLimite"
+          name="dataLimite"
+          required
+          class="form-control"
+        />
+      </div>
+
+    </div>
+
+    <!-- Linha com Prioridade + Status -->
+    <div class="form-row">
+
+      <!-- Campo de prioridade -->
+      <div class="form-col">
+        <label for="prioridade">Prioridade</label>
+
+        <select
+          id="prioridade"
+          [(ngModel)]="tarefa.prioridade"
+          name="prioridade"
+          required
+          class="form-control">
+
+          <option value="Baixa">Baixa</option>
+          <option value="Média">Média</option>
+          <option value="Alta">Alta</option>
+
+        </select>
+      </div>
+
+      <!--
+        Campo de Status.
+        Só aparece se estiver editando uma tarefa existente (isEditMode = true).
+        Isso evita confusão durante a criação, onde uma tarefa começa como "Pendente".
+      -->
+      <div class="form-col" *ngIf="isEditMode">
+        <label for="status">Status</label>
+
+        <select
+          id="status"
+          [(ngModel)]="tarefa.status"
+          name="status"
+          required
+          class="form-control">
+
+          <option value="Pendente">Pendente</option>
+          <option value="Em Andamento">Em Andamento</option>
+          <option value="Concluída">Concluída</option>
+
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Área dos botões do formulário -->
+    <div class="form-actions">
+
+      <!-- Ações do lado esquerdo: Cancelar e Excluir -->
+      <div class="left-actions">
+
+        <!-- Botão cancelar: volta para a lista -->
+        <button
+          type="button"
+          routerLink="/tasks"
+          class="btn btn-secondary">
+          Cancelar
+        </button>
+
+        <!--
+          Botão excluir.
+          Só aparece se estivermos no modo edição.
+          Ao clicar, chama deleteTask() passando o ID atual da tarefa.
+        -->
+        <button
+          *ngIf="isEditMode"
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteTask(tarefa.id)">
+          Excluir
+        </button>
+
+      </div>
+
+      <!-- Ações do lado direito: Criar ou Salvar -->
+      <div class="right-actions">
+
+        <button type="submit" class="btn btn-primary">
+          <!-- Texto dinâmico conforme o modo do formulário -->
+          {{ isEditMode ? 'Salvar Edição' : 'Criar Tarefa' }}
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+</div>

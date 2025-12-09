@@ -1,0 +1,57 @@
+/* INSTRUÇÃO: Contêiner principal do cabeçalho da navbar.
+   Define alinhamento horizontal, espaçamento entre elementos
+   e padding interno para criar uma estrutura organizada no topo. */
+.header-container {
+  display: flex;                 /* INSTRUÇÃO: Deixa os elementos lado a lado */
+  align-items: center;           /* INSTRUÇÃO: Centraliza verticalmente */
+  justify-content: space-between;/* INSTRUÇÃO: Espaça esquerda/centro/direita */
+  gap: 16px;                     /* INSTRUÇÃO: Espaço entre os elementos */
+  padding: 18px 26px;            /* INSTRUÇÃO: Área interna do header */
+}
+
+/* INSTRUÇÃO: Estilo da mensagem "Bem-vindo" exibida no canto esquerdo. */
+.left-box .welcome-message {
+  font-weight: 600;              /* INSTRUÇÃO: Texto mais forte/visível */
+  color: #333;                   /* INSTRUÇÃO: Tom escuro padrão */
+}
+
+/* INSTRUÇÃO: Define a aparência do título da página exibido no centro.
+   Ele cresce (flex: 1) para ocupar o espaço entre o usuário e os botões. */
+.title {
+  flex: 1 1 auto;                /* INSTRUÇÃO: Permite que o título se expanda */
+  text-align: left;              /* INSTRUÇÃO: Alinha o texto à esquerda */
+  margin: 0 16px;                /* INSTRUÇÃO: Espaço horizontal */
+  font-size: 22px;               /* INSTRUÇÃO: Tamanho do texto do título */
+}
+
+/* INSTRUÇÃO: Contêiner da área direita (botões de Logout e Perfil).
+   Ele fica alinhado em coluna, um botão acima do outro. */
+.right-box {
+  display: flex;                 /* INSTRUÇÃO: Organiza elementos em layout flex */
+  flex-direction: column;        /* INSTRUÇÃO: Coloca os botões um abaixo do outro */
+  gap: 8px;                      /* INSTRUÇÃO: Espaço vertical entre botões */
+  align-items: flex-end;         /* INSTRUÇÃO: Alinha tudo à direita */
+}
+
+/* INSTRUÇÃO: Estilo base aplicado a ambos os botões da navbar. */
+.logout-button, .profile-button {
+  border: none;                  /* INSTRUÇÃO: Remove borda padrão */
+  padding: 8px 12px;             /* INSTRUÇÃO: Define área interna */
+  border-radius: 6px;            /* INSTRUÇÃO: Bordas arredondadas */
+  cursor: pointer;               /* INSTRUÇÃO: Cursor de clique */
+  font-weight: 700;              /* INSTRUÇÃO: Torna o texto mais forte */
+}
+
+/* INSTRUÇÃO: Botão de logout — destaca a ação crítica (sair do sistema). */
+.logout-button {
+  background: #0d6efd;           /* INSTRUÇÃO: Azul para indicar ação primária */
+  color: #fff;                   /* INSTRUÇÃO: Texto branco para contraste */
+}
+
+/* INSTRUÇÃO: Botão de perfil — permite acessar dados do usuário.
+   O verde indica ação secundária/segura. */
+.profile-button {
+  background: #28a745;           /* INSTRUÇÃO: Verde (cor de sucesso) */
+  color: #fff;                   /* INSTRUÇÃO: Contraste branco */
+  font-size: 13px;               /* INSTRUÇÃO: Texto ligeiramente menor */
+}

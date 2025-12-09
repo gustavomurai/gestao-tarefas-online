@@ -1,0 +1,106 @@
+/* Área principal onde o conteúdo do perfil fica centralizado vertical e horizontalmente */
+.profile-wrapper {
+  min-height: 60vh;                   /* Garante altura mínima confortável */
+  display: flex;                      /* Centralização com flexbox */
+  align-items: center;                /* Centraliza verticalmente */
+  justify-content: center;            /* Centraliza horizontalmente */
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Cartão que contém o formulário de edição do perfil */
+.profile-card {
+  width: 540px;                       /* Largura fixa para melhor leitura */
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e6eef0;
+  padding: 22px;
+  box-sizing: border-box;
+}
+
+/* Título do card */
+.profile-card h2 {
+  text-align: center;
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+
+/* Cada linha do formulário (label + input) */
+.form-row {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;             /* Label em cima e input embaixo */
+}
+
+/* Label dos campos */
+.form-row label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Campos de texto */
+.form-row input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cfdfe5;
+  font-size: 14px;
+}
+
+/* Linha divisória entre seções do card */
+hr {
+  margin: 12px 0;
+  border: none;
+  height: 1px;
+  background: #f0f4f6;
+}
+
+/* Container dos botões “Salvar” e “Voltar” */
+.actions {
+  display: flex;
+  gap: 12px;                          /* Espaço entre botões */
+  justify-content: center;
+  margin-top: 12px;
+}
+
+/* Botão de salvar alterações */
+.btn-save {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Aparência do botão de salvar quando está desabilitado */
+.btn-save[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Botão de voltar */
+.btn-back {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Mensagem de sucesso após atualizar o perfil */
+.msg-success {
+  margin-top: 10px;
+  color: #1f7a1f;                     /* Verde para indicar sucesso */
+  text-align: center;
+}
+
+/* Mensagem de erro quando ocorre falha ao salvar */
+.msg-error {
+  margin-top: 10px;
+  color: #b30000;                     /* Vermelho indicando erro */
+  text-align: center;
+}

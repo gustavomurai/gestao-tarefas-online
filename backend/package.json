@@ -1,0 +1,13 @@
+{
+  "name": "task-management-backend",
+  "version": "1.0.0",
+  "description": "API RESTful para Gestão de Tarefas - Grupo 3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

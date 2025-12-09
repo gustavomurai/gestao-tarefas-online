@@ -1,0 +1,84 @@
+/* ARQUIVO GLOBAL: frontend/src/styles.css */
+/* este arquivo define estilos aplicados em toda a aplicação Angular */
+/* aqui ficam resets, variáveis, utilidades e estilos gerais que não pertencem a um componente específico */
+
+/* Estilos Base e Reset */
+/* variáveis CSS globais para facilitar troca de tema e cores */
+:root {
+  --bg: #f4f4f4;   /* cor de fundo padrão da aplicação */
+  --text: #333;    /* cor de texto padrão */
+}
+
+html, body {
+  height: 100%; /* garante que o body ocupe 100% da janela */
+}
+
+body {
+  margin: 0; /* remove margens padrão do navegador */
+  padding: 0;
+  font-family: Arial, sans-serif; /* fonte aplicada por padrão em todo o app */
+  background-color: var(--bg); /* usa variável definida acima */
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;  /* melhora suavização de fontes em navegadores WebKit */
+  -moz-osx-font-smoothing:grayscale;   /* suavização para Firefox/macOS */
+}
+
+/* Content wrapper (use quando necessário no layout principal) */
+/* classe utilitária para centralizar conteúdo e aplicar espaçamento padrão */
+.content-wrapper {
+  max-width: 1200px;  /* limita largura máxima da página */
+  margin: 0 auto;     /* centraliza horizontalmente */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box; /* evita que padding aumente o tamanho total */
+}
+
+/* Estilos de tabela globais mais simples */
+/* utilizados quando tabelas aparecem sem estilos específicos de componentes */
+/* não conflitam com componentes que usam seletores próprios */
+table {
+  width: 100%;        /* tabela ocupa largura total */
+  margin-top: 20px;
+  border-collapse: collapse; /* remove espaçamento entre células */
+}
+
+table th, table td {
+  padding: 12px;      /* espaçamento interno das células */
+  border: 1px solid #ddd; /* borda leve */
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2; /* destaca cabeçalho */
+}
+
+/* Link padrão para títulos genéricos */
+/* usado quando o título é clicável (ex.: navegar para detalhe da tarefa) */
+.task-title {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.task-title:hover { 
+  text-decoration: underline; /* indica interação */
+}
+
+/* Botões globais - base */
+/* evita inconsistência de fonte entre navegadores */
+button {
+  font-family: inherit; /* botão usa a mesma fonte do body */
+  outline: none;        /* remove borda de foco padrão */
+}
+
+/* Pequenas utilidades (ajuda visual no projeto) */
+.hidden { 
+  display: none !important; /* útil para esconder elementos sem remover do HTML */
+}
+
+.center { 
+  text-align: center; /* centraliza textos rapidamente */
+}

@@ -1,0 +1,87 @@
+<!-- Página de edição do perfil do usuário. Toda a tela é centralizada pelo CSS -->
+<div class="profile-wrapper">
+  <div class="profile-card">
+
+    <!-- Título principal da página -->
+    <h2>Meu Perfil</h2>
+
+    <!-- Campo: Nome Completo do usuário -->
+    <div class="form-row">
+      <label>Nome Completo</label>
+      <input type="text" [(ngModel)]="nomeCompleto" />
+    </div>
+
+    <!-- Campo: E-mail cadastrado -->
+    <div class="form-row">
+      <label>E-mail</label>
+      <input type="email" [(ngModel)]="email" />
+    </div>
+
+    <!-- Campo: Telefone cadastrado -->
+    <div class="form-row">
+      <label>Telefone</label>
+      <input type="text" [(ngModel)]="telefone" />
+    </div>
+
+    <!-- Campo: Nome de usuário utilizado no login -->
+    <div class="form-row">
+      <label>Usuário (login)</label>
+      <input type="text" [(ngModel)]="username" />
+    </div>
+
+    <!-- Linha divisória para separar dados gerais das configurações de senha -->
+    <hr />
+
+    <!-- Campo opcional: alteração de senha -->
+    <div class="form-row">
+      <label>Nova Senha (opcional)</label>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Deixe em branco para não alterar"
+      />
+      <!-- Texto auxiliar explicando regras de senha -->
+      <small style="display:block; margin-top:6px; color:#666;">
+        Mínimo 8 caracteres, com letra maiúscula, minúscula e número ou símbolo.
+      </small>
+    </div>
+
+    <!-- Campo: confirmação da nova senha -->
+    <div class="form-row">
+      <label>Confirmar Nova Senha</label>
+      <input
+        type="password"
+        [(ngModel)]="confirmPassword"
+        placeholder="Confirme a nova senha"
+      />
+    </div>
+
+    <!-- Campo: código de ativação exigido pelo backend -->
+    <div class="form-row">
+      <label>Código de Ativação (9999)</label>
+      <input type="text" [(ngModel)]="codigoAtivacao" />
+    </div>
+
+    <!-- Área dos botões: Salvar e Voltar -->
+    <div class="actions">
+      <!-- Botão salvar: muda de texto enquanto está carregando -->
+      <button
+        class="btn-save"
+        (click)="saveProfile()"
+        [disabled]="submitting"
+      >
+        <span *ngIf="!submitting">Salvar</span>
+        <span *ngIf="submitting">Salvando...</span>
+      </button>
+
+      <!-- Botão para retornar à lista de tarefas -->
+      <button class="btn-back" (click)="backToList()">Voltar</button>
+    </div>
+
+    <!-- Mensagem de sucesso exibida após salvar -->
+    <div *ngIf="message" class="msg-success">{{ message }}</div>
+
+    <!-- Mensagem de erro exibida caso algo falhe -->
+    <div *ngIf="error" class="msg-error">{{ error }}</div>
+  </div>
+</div>

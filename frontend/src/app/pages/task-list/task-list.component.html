@@ -1,0 +1,203 @@
+<div class="container">
+
+  <!-- Cabeçalho da página: título à esquerda e botões (logout / perfil) à direita -->
+  <div class="header-container">
+    <div class="header-left">
+      <div class="title-block">
+        <h1>Sistema de Gestão de Tarefas (CRUD)</h1>
+        <p class="subtitle">Projeto do Grupo 3 | Angular + Node.js/Express</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- botão que chama o método onLogout() no componente -->
+      <button (click)="onLogout()" class="logout-button">Logout</button>
+      <!-- link para a página de perfil -->
+      <button routerLink="/profile" class="profile-button">Meu Perfil</button>
+    </div>
+  </div>
+
+  <!-- Botão principal para criar nova tarefa (navega para /tasks/new) -->
+  <button routerLink="/tasks/new" class="create-button-big">
+    Criar Nova Tarefa
+  </button>
+
+  <!-- Área de Importar / Exportar (botões e input file escondido) -->
+  <div class="import-export-container">
+    <div class="import-export-right">
+      <!-- chama o método importarArquivo() -->
+      <button (click)="importarArquivo()" class="yellow-button">Importar Lista</button>
+      <!-- chama o método exportarLista() -->
+      <button (click)="exportarLista()" class="yellow-button">Exportar Lista</button>
+      <!-- input para arquivo; visível apenas quando necessário via JS -->
+      <input type="file" id="fileInput" accept=".json,.csv" style="display:none" (change)="processarArquivo($event)" />
+    </div>
+  </div>
+
+  <!-- Filtros: título, descrição, status, prioridade, data e responsável -->
+  <fieldset class="filter-container">
+    <legend>Filtrar Tarefas</legend>
+
+    <div class="filter-controls">
+      <!-- cada controle atualiza variáveis no componente e chama applyFilters() -->
+      <input type="text" [(ngModel)]="filterTitulo" (ngModelChange)="applyFilters()" placeholder="Buscar por Título">
+      <input type="text" [(ngModel)]="filterDescricao" (ngModelChange)="applyFilters()" placeholder="Buscar por Descrição">
+      <select [(ngModel)]="filterStatus" (ngModelChange)="applyFilters()">
+        <option value="">Status (Todos)</option>
+        <option value="Pendente">Pendente</option>
+        <option value="Em Andamento">Em Andamento</option>
+        <option value="Concluída">Concluída</option>
+      </select>
+      <select [(ngModel)]="filterPrioridade" (ngModelChange)="applyFilters()">
+        <option value="">Prioridade (Todas)</option>
+        <option value="Alta">Alta</option>
+        <option value="Média">Média</option>
+        <option value="Baixa">Baixa</option>
+      </select>
+      <input type="date" [(ngModel)]="filterDataLimite" (ngModelChange)="applyFilters()">
+      <input type="text" [(ngModel)]="filterResponsavel" (ngModelChange)="applyFilters()" placeholder="Buscar por Responsável">
+      <!-- botão para resetar filtros (chama resetFilters()) -->
+      <button type="button" (click)="resetFilters()" class="reset-button">Limpar Filtros</button>
+    </div>
+  </fieldset>
+
+  <!-- Título com status de paginação -->
+  <h2 class="section-title">
+    Tarefas Cadastradas (Página {{ currentPage }} de {{ totalPages }})
+  </h2>
+
+  <!-- Mensagem quando não há tarefas -->
+  <div *ngIf="tasks.length === 0" class="empty-list">
+    Nenhuma tarefa encontrada.
+  </div>
+
+  <!-- TABELA: renderizada apenas quando houver tarefas -->
+  <table *ngIf="tasks.length > 0">
+
+    <!-- COLGROUP fixando larguras das colunas para layout estável -->
+    <colgroup>
+      <col style="width: 70px">
+      <col style="width: 300px">
+      <col style="width: 120px">
+      <col style="width: 100px">
+      <col style="width: 130px">
+      <col style="width: 150px">
+      <col style="width: 240px"> <!-- coluna Ações -->
+    </colgroup>
+
+    <thead>
+      <tr>
+        <!-- Cabeçalhos clicáveis que chamam sortTasks(campo) -->
+        <th (click)="sortTasks('id')" class="sortable">
+          ID <span *ngIf="sortKey === 'id'" class="sort-arrow">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </th>
+
+        <th (click)="sortTasks('titulo')" class="sortable">
+          Título <span *ngIf="sortKey === 'titulo'" class="sort-arrow">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </th>
+
+        <th (click)="sortTasks('status')" class="sortable">
+          Status <span *ngIf="sortKey === 'status'" class="sort-arrow">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </th>
+
+        <th (click)="sortTasks('prioridade')" class="sortable">
+          Prioridade <span *ngIf="sortKey === 'prioridade'" class="sort-arrow">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </th>
+
+        <th (click)="sortTasks('dataLimite')" class="sortable">
+          Data Limite <span *ngIf="sortKey === 'dataLimite'" class="sort-arrow">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </th>
+
+        <th (click)="sortTasks('responsavel')" class="sortable">
+          Responsável <span *ngIf="sortKey === 'responsavel'" class="sort-arrow">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+        </th>
+
+        <!-- Cabeçalho Ações alinhado à esquerda por CSS (action-column) -->
+        <th class="action-column">Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- paginatedTasks é a lista já paginada no componente -->
+      <tr *ngFor="let task of paginatedTasks">
+
+        <!-- ID -->
+        <td>{{ task.id }}</td>
+
+        <!-- Título com link para detalhe -->
+        <td>
+          <a [routerLink]="['/tasks', task.id]" class="task-title">
+            {{ task.titulo }}
+          </a>
+        </td>
+
+        <!-- Status com classes de cor dependendo do valor -->
+        <td>
+          <span 
+            [ngClass]="{
+              'status-pending': task.status === 'Pendente',
+              'status-progress': task.status === 'Em Andamento',
+              'status-completed': task.status === 'Concluída'
+            }"
+          >
+            {{ task.status }}
+          </span>
+        </td>
+
+        <!-- Prioridade / Data Limite / Responsável -->
+        <td>{{ task.prioridade }}</td>
+        <td>{{ task.dataLimite | date:'dd/MM/yyyy' }}</td>
+        <td>{{ task.responsavel }}</td>
+
+        <!-- Célula de ações: contém 3 botões (Detalhes, Editar, Excluir).
+             A célula mantém padding consistente com as outras células para
+             que a faixa branca fique alinhada corretamente. -->
+        <td class="action-buttons-cell">
+
+          <!-- Navega para página de detalhe -->
+          <button
+            class="action-detail"
+            [routerLink]="['/tasks', task.id]">
+            Detalhes
+          </button>
+
+          <!-- Navega para edição -->
+          <button
+            class="action-edit"
+            [routerLink]="['/tasks/edit', task.id]">
+            Editar
+          </button>
+
+          <!-- Chama método deleteTask(id) no componente -->
+          <button 
+            class="action-delete"
+            (click)="deleteTask(task.id)">
+            Excluir
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- PAGINAÇÃO: visível quando há mais itens que itemsPerPage -->
+  <div *ngIf="tasks.length > itemsPerPage" class="pagination-controls">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" class="pagination-button">
+      Página Anterior
+    </button>
+
+    <!-- Gera os botões de página a partir de pageNumbers no componente -->
+    <button
+      *ngFor="let page of pageNumbers"
+      (click)="goToPage(page)"
+      [ngClass]="{'active': page === currentPage}"
+      class="pagination-button page-number">
+      {{ page }}
+    </button>
+
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" class="pagination-button">
+      Próxima Página
+    </button>
+  </div>
+
+</div>
